@@ -1,0 +1,41 @@
+---
+
+# ------------------------------------------------------------
+# add one or several GIT Repositories
+# ------------------------------------------------------------
+
+ - debug: 
+     msg: "** dLibrary addGITRepo version 1.0 **"
+     verbosity: 2
+# - debug:
+#     msg: "Source repository: {{ dGitItem.src }}"
+#     verbosity: 2
+# - debug:
+#     msg: "Destination: {{ dGitItem.dest }}"
+#     verbosity: 2     
+# - debug:
+#     msg: "Create target directory? {{ dMkDir | default(No)}}"
+#     verbosity: 2
+
+
+ - name: Ensure target directory exist
+   include_tasks: "{{ playbookPath }}/roles/common/tasks/mkDir.yml"
+   vars:
+     dDirPath: "{{ dMake.dest }}"
+   with_items:
+     - "{{ dGITItem }}"
+   loop_control:
+     loop_var: dMake
+   when: dMkDir == True  
+  
+ - name: Clone or update local GIT repositories
+   git:
+    repo: "{{ item.src }}"
+    dest: "{{ item.dest | default( gitPath )}}"
+    force: "{{ item.force | default( true )}}"
+    umask: "{{ item.umask | default('002')}}"
+#    update: "{{ item.update | default( true )}}"
+    recursive: "{{ item.recursive | default(omit)}}"
+    verify_commit: "{{ item.verifyCommit | default(omit)}}"
+   with_items:
+     - "{{ dGITItem }}"

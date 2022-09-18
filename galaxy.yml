@@ -1,0 +1,37 @@
+---
+namespace: bhdicaire
+name: mactools
+version: "0.1.0"
+readme: README.md
+
+authors:
+  - bhdicaire
+
+description: Collection of macOS automation tools for Ansible.
+
+license:
+  - MIT
+
+tags:
+  - mac
+  - macos
+  - osx
+  - configure
+  - development
+  - apple
+  - macbook
+  - imac
+  - macmini
+  - server
+  - chezmoi
+  - dotfiles  
+
+dependencies:
+  community.general: ">=3.0.0"
+
+repository: https://github.com/bhdicaire/macTools
+documentation: https://github.com/bhdicaire/macTools
+homepage: https://BHDicaire.com
+issues: https://github.com/bhdicaire/macTools/issues
+
+build_ignore: []

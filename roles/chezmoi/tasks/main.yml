@@ -1,0 +1,19 @@
+---
+# -----------------------------------------------------------------------------------
+# macTools according to my opinionated standards
+# Modified by: Benoît H. Dicaire
+# https://GitHub.com/bhdicaire/macTools
+# -----------------------------------------------------------------------------------
+
+ - name: [macTools chezmoi] Install via HomeBrew
+   community.general.homebrew:
+    name: chezmoi
+    state: present
+    update_homebrew: true
+
+ - name:  [macTools chezmoi] Initialize with an empty repository
+   ansible.builtin.command: "chezmoi init"
+   when: not dotfiles_repository_url
+   
+ - name:  [macTools chezmoi] Initialize with an existing repository
+   ansible.builtin.command: "chezmoi init --apply --verbose {{ dotFilesGIT }}"
