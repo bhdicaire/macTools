@@ -28,7 +28,7 @@ collections:
 
 ### Role Requirements
 
-There is no requirements.
+There is no requirements :).
 ```
 
 ## Usage
